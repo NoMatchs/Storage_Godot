@@ -1,0 +1,169 @@
+[gd_scene load_steps=7 format=3 uid="uid://cx0kdj0w7mllk"]
+
+[ext_resource type="Texture2D" uid="uid://be3ljtbrdhkrb" path="res://AssetBundle/Sprites/ForestBackground.png" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://ct6pp1hwwgngm" path="res://Script/GameManager.gd" id="1_rgh2o"]
+[ext_resource type="PackedScene" uid="uid://cega683vu354e" path="res://Scenes/player.tscn" id="2_idj7w"]
+[ext_resource type="PackedScene" uid="uid://cex4dwvmxblsn" path="res://Scenes/Enemy.tscn" id="3_kln2b"]
+[ext_resource type="FontFile" uid="uid://djgowc1w12xl2" path="res://AssetBundle/Uranus_Pixel_11Px.ttf" id="5_pbw6q"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_idj7w"]
+distance = -35.0
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("spawn_time", "score_label", "game_over_label")]
+y_sort_enabled = true
+script = ExtResource("1_rgh2o")
+enemy_scene = ExtResource("3_kln2b")
+spawn_time = NodePath("Timer")
+score_label = NodePath("UI/score")
+game_over_label = NodePath("UI/Game_over")
+
+[node name="BG01" type="Sprite2D" parent="."]
+position = Vector2(-120, -41)
+texture = ExtResource("1_glv2v")
+metadata/_edit_lock_ = true
+
+[node name="BG02" type="Sprite2D" parent="."]
+position = Vector2(119, -41)
+texture = ExtResource("1_glv2v")
+metadata/_edit_lock_ = true
+
+[node name="player" parent="." instance=ExtResource("2_idj7w")]
+position = Vector2(-177, 45)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -39)
+zoom = Vector2(2.4, 2.4)
+metadata/_edit_lock_ = true
+
+[node name="Boundry" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Boundry"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundry/StaticBody2D"]
+position = Vector2(-2, 59)
+shape = SubResource("WorldBoundaryShape2D_idj7w")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Boundry"]
+position = Vector2(-2, 93)
+rotation = -3.1415925
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundry/StaticBody2D4"]
+position = Vector2(-2, 59)
+shape = SubResource("WorldBoundaryShape2D_idj7w")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Boundry"]
+position = Vector2(-145, 0)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundry/StaticBody2D3"]
+position = Vector2(-2, 59)
+shape = SubResource("WorldBoundaryShape2D_idj7w")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Boundry"]
+position = Vector2(146, 0)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundry/StaticBody2D2"]
+position = Vector2(-2, 59)
+shape = SubResource("WorldBoundaryShape2D_idj7w")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="score" type="Label" parent="UI"]
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 84.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("5_pbw6q")
+theme_override_font_sizes/font_size = 48
+text = "Score : 0"
+
+[node name="Game_over" type="Label" parent="UI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -317.0
+offset_top = -121.5
+offset_right = 317.0
+offset_bottom = 121.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.015813744, 0.75084263, 0.6422827, 1)
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("5_pbw6q")
+theme_override_font_sizes/font_size = 120
+text = "GAME OVER!
+"
+
+[node name="Game_Maker" type="Label" parent="UI/Game_over"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -435.0
+offset_top = -1.0
+offset_right = 439.0
+offset_bottom = 242.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.015813744, 0.75084263, 0.6422827, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("5_pbw6q")
+theme_override_font_sizes/font_size = 60
+text = "GAME BY LIQUAN
+"
+horizontal_alignment = 1
+
+[node name="Statement" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -28.0
+offset_right = 28.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.80877227, 0, 0.18186483, 1)
+theme_override_fonts/font = ExtResource("5_pbw6q")
+theme_override_font_sizes/font_size = 40
+text = "W 向上 S 向下 D 向右 A 向左"
+
+[node name="Statement2" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -196.0
+offset_top = 50.0
+offset_right = 204.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1.1551381e-06, 0.509537, 0.8020415, 1)
+theme_override_fonts/font = ExtResource("5_pbw6q")
+theme_override_font_sizes/font_size = 40
+text = "角色停止才能进行射击"
+
+[node name="Statement3" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 212.0
+offset_top = 65.0
+offset_right = 572.0
+offset_bottom = 178.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_pbw6q")
+theme_override_font_sizes/font_size = 30
+text = "击杀敌人+1分
+角色触碰敌人游戏结束
+三秒钟后自动重新开始游戏"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

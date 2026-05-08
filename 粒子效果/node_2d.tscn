@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cdfhsq5qo2uxc"]
+
+[ext_resource type="Texture2D" uid="uid://ci713tluj3oww" path="res://icon.svg" id="1_wtcfe"]
+
+[sub_resource type="Shader" id="Shader_wtcfe"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.6.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+uniform int particles_anim_h_frames;
+uniform int particles_anim_v_frames;
+uniform bool particles_anim_loop;
+
+void vertex() {
+	float h_frames = float(particles_anim_h_frames);
+	float v_frames = float(particles_anim_v_frames);
+	VERTEX.xy /= vec2(h_frames, v_frames);
+	float particle_total_frames = float(particles_anim_h_frames * particles_anim_v_frames);
+	float particle_frame = floor(INSTANCE_CUSTOM.z * float(particle_total_frames));
+	if (!particles_anim_loop) {
+		particle_frame = clamp(particle_frame, 0.0, particle_total_frames - 1.0);
+	} else {
+		particle_frame = mod(particle_frame, particle_total_frames);
+	}	UV /= vec2(h_frames, v_frames);
+	UV += vec2(mod(particle_frame, h_frames) / h_frames, floor((particle_frame + 0.5) / h_frames) / v_frames);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0e48y"]
+shader = SubResource("Shader_wtcfe")
+shader_parameter/particles_anim_h_frames = 5
+shader_parameter/particles_anim_v_frames = 5
+shader_parameter/particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0e48y"]
+particle_flag_disable_z = true
+angle_min = -171.4
+angle_max = 0.10001073
+spread = 14.595
+initial_velocity_min = 380.96
+initial_velocity_max = 744.06
+gravity = Vector3(0, 98, 0)
+anim_offset_max = 1.0
+
+[node name="Node2D" type="Node2D" unique_id=803876131]
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=815401906]
+position = Vector2(368, 230)
+texture = ExtResource("1_wtcfe")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=876419495]
+material = SubResource("ShaderMaterial_0e48y")
+position = Vector2(48, 54)
+rotation = 1.5577508
+texture = ExtResource("1_wtcfe")
+process_material = SubResource("ParticleProcessMaterial_0e48y")

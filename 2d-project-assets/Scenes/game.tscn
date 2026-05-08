@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://bht8y6nt0wh1y"]
+
+[ext_resource type="Script" uid="uid://coxdhhdmc2msj" path="res://Script/game.gd" id="1_3dryh"]
+[ext_resource type="PackedScene" uid="uid://bls7e03uednrc" path="res://Scenes/Player.tscn" id="1_ebmjs"]
+[ext_resource type="PackedScene" uid="uid://cd8sor4683qdp" path="res://Scenes/tree.tscn" id="2_qxrlw"]
+
+[sub_resource type="Curve2D" id="Curve2D_wrm1d"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -89, -63, 0, 0, 0, 0, 2023, -66, 0, 0, 0, 0, 2023, 1140, 0, 0, 0, 0, -99, 1140, 0, 0, 0, 0, -89, -63)
+}
+point_count = 5
+
+[node name="Game" type="Node2D" unique_id=770740562]
+y_sort_enabled = true
+script = ExtResource("1_3dryh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=773009554]
+layer = -10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=583763153]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect" unique_id=1091212287]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -429.0
+offset_right = 429.0
+offset_bottom = 166.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.80784315, 0, 0.20784314, 0.6156863)
+theme_override_font_sizes/font_size = 120
+text = "WASD 控制移动"
+
+[node name="Player" parent="." unique_id=312744160 instance=ExtResource("1_ebmjs")]
+position = Vector2(747, 520)
+
+[node name="Path2D" type="Path2D" parent="Player" unique_id=2140513055]
+position = Vector2(-747, -520)
+curve = SubResource("Curve2D_wrm1d")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D" unique_id=1742401428]
+unique_name_in_owner = true
+position = Vector2(-89, -63)
+rotation = -0.0014204535
+
+[node name="tree" type="Node" parent="." unique_id=219557374]
+
+[node name="Tree" parent="tree" unique_id=980718789 instance=ExtResource("2_qxrlw")]
+position = Vector2(183, 871)
+
+[node name="Tree2" parent="tree" unique_id=1873299183 instance=ExtResource("2_qxrlw")]
+position = Vector2(1708, 342)
+
+[node name="Tree3" parent="tree" unique_id=1027287127 instance=ExtResource("2_qxrlw")]
+position = Vector2(1392, 603)
+
+[node name="Tree4" parent="tree" unique_id=1447205794 instance=ExtResource("2_qxrlw")]
+position = Vector2(848, 801)
+
+[node name="Tree5" parent="tree" unique_id=1800283224 instance=ExtResource("2_qxrlw")]
+position = Vector2(190, 191)
+
+[node name="Tree6" parent="tree" unique_id=1283482845 instance=ExtResource("2_qxrlw")]
+position = Vector2(186, 507)
+
+[node name="Tree7" parent="tree" unique_id=488297384 instance=ExtResource("2_qxrlw")]
+position = Vector2(797, 202)
+
+[node name="Tree8" parent="tree" unique_id=1444185993 instance=ExtResource("2_qxrlw")]
+position = Vector2(532, 422)
+
+[node name="Timer" type="Timer" parent="." unique_id=1393722392]
+wait_time = 0.602
+autostart = true
+
+[node name="Gameover" type="CanvasLayer" parent="." unique_id=883097115]
+layer = 10
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Gameover" unique_id=1914520898]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7058824)
+
+[node name="Label" type="Label" parent="Gameover/ColorRect" unique_id=1324795530]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -11.5
+offset_right = 50.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 160
+text = "Game Over
+请重新运行游戏"
+
+[connection signal="hp_depleted" from="Player" to="." method="_on_player_hp_depleted"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

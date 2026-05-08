@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://cn8i7xvhigucv"]
+
+[ext_resource type="PackedScene" uid="uid://d0e84htvli1yu" path="res://pipe.tscn" id="1_r1kwc"]
+[ext_resource type="Texture2D" uid="uid://cn7bnv3cpr5so" path="res://assets/coin-frame-1.png" id="2_wa0cv"]
+[ext_resource type="Texture2D" uid="uid://bvmjemcee23va" path="res://assets/coin-frame-2.png" id="3_772qa"]
+[ext_resource type="Texture2D" uid="uid://di5vd1vden2mc" path="res://assets/coin-frame-3.png" id="4_s51uo"]
+[ext_resource type="Texture2D" uid="uid://bckwfy66ospj2" path="res://assets/coin-frame-4.png" id="5_6istx"]
+[ext_resource type="Texture2D" uid="uid://bkyxe44ubi4tw" path="res://assets/coin-frame-5.png" id="6_mjl5d"]
+[ext_resource type="Texture2D" uid="uid://be5itr7kiya4j" path="res://assets/coin-frame-6.png" id="7_77aix"]
+[ext_resource type="Texture2D" uid="uid://dxhg4n4hqreue" path="res://assets/coin-frame-7.png" id="8_qym84"]
+[ext_resource type="Texture2D" uid="uid://b6doh08sa3p33" path="res://assets/coin-frame-8.png" id="9_j08ju"]
+[ext_resource type="Texture2D" uid="uid://bk8y7sfuwwky2" path="res://assets/coin-frame-9.png" id="10_52q4l"]
+[ext_resource type="Texture2D" uid="uid://biytaxyj6hxma" path="res://assets/coin-frame-10.png" id="11_bxjin"]
+[ext_resource type="Texture2D" uid="uid://dwmmsaux8blt5" path="res://assets/coin-frame-11.png" id="12_dwv87"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jajjd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wa0cv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_772qa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s51uo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6istx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_mjl5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_77aix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qym84")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_j08ju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_52q4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bxjin")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_dwv87")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4mkii"]
+radius = 14.0
+
+[sub_resource type="Animation" id="Animation_wa0cv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_vvnl7"]
+resource_name = "coin"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(5.242878),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s0m61"]
+_data = {
+&"RESET": SubResource("Animation_wa0cv"),
+&"coin": SubResource("Animation_vvnl7")
+}
+
+[node name="Pipes" type="Node2D" unique_id=1378488165]
+
+[node name="PipeTop" parent="." unique_id=130869859 instance=ExtResource("1_r1kwc")]
+position = Vector2(0, -90)
+rotation = 3.1415927
+
+[node name="PipeBottom" parent="." unique_id=86009052 instance=ExtResource("1_r1kwc")]
+position = Vector2(0, 90)
+
+[node name="Coin" type="Area2D" parent="." unique_id=796478726]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Coin" unique_id=1531324552]
+scale = Vector2(1e-05, 1e-05)
+sprite_frames = SubResource("SpriteFrames_jajjd")
+autoplay = "default"
+frame_progress = 0.74154365
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin" unique_id=697150724]
+shape = SubResource("CircleShape2D_4mkii")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Coin" unique_id=316301431]
+libraries/ = SubResource("AnimationLibrary_s0m61")

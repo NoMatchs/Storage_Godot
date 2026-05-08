@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bs5x5fgqtgtkx"]
+
+[ext_resource type="Script" uid="uid://dte57i17llc8e" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://dc58j7gviomfx" path="res://assets/sprites/skiier.png" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://diay3e6nxm7nm" path="res://Scripts/line_2d.gd" id="3_6t5aa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
+radius = 7.071068
+
+[node name="Player" type="CharacterBody2D" unique_id=250114467]
+script = ExtResource("1_cvnsp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1716727088]
+texture = ExtResource("1_v0iea")
+hframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1053872982]
+shape = SubResource("CircleShape2D_cvnsp")
+
+[node name="TracketPostion01" type="Node2D" parent="." unique_id=222335252]
+position = Vector2(-10, 3)
+
+[node name="Line2D" type="Line2D" parent="TracketPostion01" unique_id=2052679685]
+script = ExtResource("3_6t5aa")
+
+[node name="TracketPostion02" type="Node2D" parent="." unique_id=38001228]
+position = Vector2(-10, 7)
+
+[node name="Line2D" type="Line2D" parent="TracketPostion02" unique_id=549371595]
+script = ExtResource("3_6t5aa")

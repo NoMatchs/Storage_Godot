@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbe7rrc4uedof"]
+
+[ext_resource type="AudioStream" uid="uid://cqvid5lnix7fq" path="res://AssetBundle/Audio/BGM.ogg" id="1_wdp3h"]
+
+[node name="Mian_sound" type="AudioStreamPlayer"]
+stream = ExtResource("1_wdp3h")
+autoplay = true
