@@ -21,16 +21,23 @@ sources/0 = SubResource("TileSetAtlasSource_dbls1")
 texture = ExtResource("1_dbls1")
 0:0/0 = 0
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
 2:1/0 = 0
 0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:2/0 = 0
 2:2/0 = 0
 3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p1ry8"]
 texture = ExtResource("2_33cqm")
@@ -40,28 +47,45 @@ texture = ExtResource("2_33cqm")
 0:2/animation_frame_2/duration = 1.0
 0:2/animation_frame_3/duration = 1.0
 0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:3/animation_speed = 8.0
 0:3/animation_frame_0/duration = 1.0
 0:3/animation_frame_1/duration = 1.0
 0:3/animation_frame_2/duration = 1.0
 0:3/animation_frame_3/duration = 1.0
 0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:4/animation_speed = 8.0
 0:4/animation_frame_0/duration = 1.0
 0:4/animation_frame_1/duration = 1.0
 0:4/animation_frame_2/duration = 1.0
 0:4/animation_frame_3/duration = 1.0
 0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:5/animation_speed = 8.0
 0:5/animation_frame_0/duration = 1.0
 0:5/animation_frame_1/duration = 1.0
 0:5/animation_frame_2/duration = 1.0
 0:5/animation_frame_3/duration = 1.0
 0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_xlg7c"]
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_xwcet")
 sources/1 = SubResource("TileSetAtlasSource_p1ry8")
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_33cqm"]
+b = Vector2(256, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_xwcet"]
+b = Vector2(256, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_p1ry8"]
+b = Vector2(0, 256)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_xlg7c"]
+b = Vector2(0, 256)
 
 [node name="Game" type="Node2D" unique_id=731204187]
 
@@ -80,3 +104,25 @@ tile_set = SubResource("TileSet_xlg7c")
 
 [node name="Player" parent="." unique_id=83276369 instance=ExtResource("3_33cqm")]
 position = Vector2(106, 84)
+
+[node name="Top" type="StaticBody2D" parent="." unique_id=953596434]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top" unique_id=1001868480]
+shape = SubResource("SegmentShape2D_33cqm")
+
+[node name="Down" type="StaticBody2D" parent="." unique_id=1744998564]
+position = Vector2(0, 256)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Down" unique_id=611698773]
+shape = SubResource("SegmentShape2D_xwcet")
+
+[node name="Right" type="StaticBody2D" parent="." unique_id=443809686]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right" unique_id=1203309244]
+shape = SubResource("SegmentShape2D_p1ry8")
+
+[node name="Left" type="StaticBody2D" parent="." unique_id=1787855533]
+position = Vector2(256, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left" unique_id=1242376904]
+shape = SubResource("SegmentShape2D_xlg7c")
