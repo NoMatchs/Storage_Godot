@@ -380,6 +380,9 @@ radius = 6.0
 
 [node name="Player" type="CharacterBody2D" unique_id=83276369]
 script = ExtResource("1_fvtld")
+fire_interval = null
+bullet_spawn_distance = null
+move_speed = null
 
 [node name="Bodysprite" type="AnimatedSprite2D" parent="." unique_id=774000179]
 sprite_frames = SubResource("SpriteFrames_oyaf6")
@@ -387,7 +390,7 @@ animation = &"armed_right"
 autoplay = "normal_right"
 frame_progress = 0.9654861
 
-[node name="Armed" type="AnimatedSprite2D" parent="." unique_id=2058714619]
+[node name="ArmedEffectSprite" type="AnimatedSprite2D" parent="." unique_id=2058714619]
 visible = false
 sprite_frames = SubResource("SpriteFrames_36u8p")
 animation = &"armed"
@@ -395,3 +398,5 @@ frame_progress = 0.6962066
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1379240021]
 shape = SubResource("CircleShape2D_rtno0")
+
+[node name="ShootingTimer" type="Timer" parent="." unique_id=1397447373]
