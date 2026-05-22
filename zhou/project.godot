@@ -15,9 +15,17 @@ run/main_scene="uid://bp574qutdsfps"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://bn7l1nhsoxvfx"
+
 [display]
 
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/git_bash_here/plugin.cfg")
 
 [input]
 
@@ -65,6 +73,10 @@ shoot_down={
 [physics]
 
 3d/physics_engine="Jolt Physics"
+
+[plugins]
+
+git_bash_here/shortcut=Resource("uid://df2ve8i42uprp", "res://addons/git_bash_here/git_bash_here_shortcut.tres")
 
 [rendering]
 
